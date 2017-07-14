@@ -170,6 +170,13 @@
             <version>${tils.version}</version>
         </dependency>
         
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+    
     </dependencies>
     
     <dependencyManagement>

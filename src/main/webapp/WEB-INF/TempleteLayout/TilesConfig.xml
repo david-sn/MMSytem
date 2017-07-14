@@ -4,44 +4,16 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition name="defaultTemplate" template="/WEB-INF/layout/template.jsp">
-        <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
-        <put-attribute name="title" value="Here Bloger" />
+    <definition name="defaultTemplate" template="/WEB-INF/TempleteLayout/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/TempleteLayout/Header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/TempleteLayout/body.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/TempleteLayout/Footer.jsp" />
+        <put-attribute name="title" value="MMS" />
         <put-attribute name="currentActive" value="Home" />
     </definition>
-    <definition name="home" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+    <definition name="body2" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/JSP/body2.jsp" />
         <put-attribute name="title" value="Home" />
         <put-attribute name="currentActive" value="Home" />
     </definition>
-    <definition name="users" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/JSP/users.jsp" />
-        <put-attribute name="title" value="Users" />
-        <put-attribute name="currentActive" value="users" />
-    </definition>
-    <definition name="usersDetail" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/JSP/usersDetail.jsp" />
-        <put-attribute name="title" value="User Details" />
-        <put-attribute name="currentActive" value="usersDetail" />
-    </definition>
-    <definition name="userRegister" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/JSP/userRegister.jsp" />
-        <put-attribute name="title" value="User Register" />
-        <put-attribute name="currentActive" value="userRegister" />
-    </definition>
-    <definition name="login" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/JSP/login.jsp" />
-        <put-attribute name="title" value="User Login" />
-        <put-attribute name="currentActive" value="userLogin" />
-    </definition>
-    <definition name="account" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/JSP/userAccount.jsp" />
-        <put-attribute name="title" value="User Account" />
-        <put-attribute name="currentActive" value="useraccount" />
-    </definition>
-
-
 </tiles-definitions>
