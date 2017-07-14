@@ -16,12 +16,11 @@ public class ajaxController {
     public String get() {
         return "body2";
     }
-
+    
     @ModelAttribute("user")
     public Users getUsers() {
         return new Users();
     }
- 
 
     @RequestMapping(value = "/submitForm.web", method = RequestMethod.POST)
     @ResponseBody
