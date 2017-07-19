@@ -7,7 +7,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class MembersController {
 
-    @RequestMapping(value = "/a")
+    @RequestMapping(value = "/")
     public String get2() {
 
         return "MemberDetails";
