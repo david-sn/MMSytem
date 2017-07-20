@@ -25,7 +25,7 @@
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 ">
     <!--Scane every This exclude controller-->
-    <context:component-scan base-package="com.mycompany.bologsaggregator.Controller" >
+    <context:component-scan base-package="com.david.mmsystem.Controllers" >
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
   
@@ -45,9 +45,9 @@
         <property name="maxPoolSize" value="${connection.maxPoolSize}" />
         <property name="maxIdleTime" value="${connection.maxIdleTime}" />
     </bean>
-  
+    
     <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+              class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
         <property name="hibernateProperties">
             <props>
