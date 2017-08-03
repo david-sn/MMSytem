@@ -11,113 +11,62 @@
 <!DOCTYPE html>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
+     
+        
+            <!--Table load All--> 
+            <table class="table table-bordered table-hover table-responsive table-fixed col-md-12" align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
+                <thead>
+                    <tr class="info">
+                        <th onclick="sortTable(1)" class="text-center">Name <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </th>
+                        <th onclick="sortTable(2)" class="text-center">Country <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </th>
+                        <th onclick="sortTable(3)" class="text-center">Age <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </th>
+                        <th class="text-center">Action</th>
+                    </tr
 
-        <!--Table load All--> 
-        <table class="table table-bordered table-hover table-responsive" align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
-            <tr class="info">
-                <th onclick="sortTable(1)" class="text-center">Name <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </th>
-                <th onclick="sortTable(2)" class="text-center">Country <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </th>
-                <th onclick="sortTable(3)" class="text-center">Age <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </th>
-                <th onclick="sortTable(4)" class="text-center">Action</th>
-            </tr>
-            <tr align='center' class="search-table success">
-                <td><input type="text" id="new_name"></td>
-                <td><input type="text" id="new_country"></td>
-                <td><input type="text" id="new_age"></td>
-                <td>
-                    <button  class="search btn_control_option_table" style="border-radius: 2px; background-color: inherit; color: rgba(28, 149, 207, 0.6);" onclick="search();" ><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> </button>
-                </td>
-            </tr>
-
-            <c:forEach items="${k}" var="U">
-                <tr id="row${U.phone}">
-                    <td id="name_row${U.phone}">${U.name}</td>
-                    <td id="country_row${U.phone}">${U.dob}</td>
-                    <td id="age_row${U.phone}">${U.phone}</td>
-                    <td align='center'>
-                        <button id="edit_button${U.phone}"   onclick="edit_row('${U.phone}')" style ="color: brown"  class="edit btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Edit Record" >             <span class="glyphicon glyphicon-edit" aria-hidden="true">           </span></button>
-                        <button id="save_button${U.phone}"  onclick="save_row('${U.phone}')" style="color: darkseagreen" class="save hidden btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Save Changes"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true">      </span></button>
-                        <button id="delete_button${U.phone}" onclick="delete_row('${U.phone}')" style="color:red"     class="btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Delete Record">                 <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">  </span></button>
-                        <button id="cancel_button${U.phone}" onclick="cancel_chage('${U.phone}')" style="color:blue"    class="hidden btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Cancel Changes">         <span class="glyphicon glyphicon-ban-circle" aria-hidden="true">     </span></button>
-                    </td>
-                </tr>
-            </c:forEach>
-
-
-            <!--add new Record-->
-            <tr align='center' class="search-table">
-                <td><input type="text" id="newRecord_name"></td>
-                <td><input type="text" id="newRecord_country"></td>
-                <td><input type="text" id="newRecord_age"></td>
-                <td>
-                    <button  class="add btn_control_option_table" style="border-radius: 2px; background-color: yellowgreen;" onclick="add_row();" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                </td>
-            </tr>
-        </table>
-
-
-        <!--Pagination-->
-        <div style=" display: inline-block; float: left;
-             justify-content: center;">
-
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-sm">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <!--drop down number list-->
-        <div style=" display: inline-block; float: left;
-             justify-content: center; top: 10px;">
-            <div class="dropdown" style="padding-top: 18px;">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Dropdown
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-            </div>  
-        </div>
+                    <tr align='center' class="search-table success">
+                        <td><input type="text" name="name" id="newRecord_name"></td>
+                        <td><input type="text" name="phone" id="newRecord_country"></td>
+                        <td><input type="text" name="email" id="newRecord_age"></td>
+                        <td>
+                            <button  class="search btn_control_option_table" style="border-radius: 2px; background-color: inherit; color: rgba(28, 149, 207, 0.6);" onclick="search();" ><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> </button>
+                            <button  class="add btn_control_option_table" style="border-radius: 2px; background-color: yellowgreen;" onclick="add_row();" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${k}" var="U">
+                        <tr id="row${U.phone}" onclick="onClickRowSelected(${U.phone})">
+                            <td id="name_row${U.phone}">${U.name}</td>
+                            <td id="country_row${U.phone}">${U.dob}</td>
+                            <td id="age_row${U.phone}">${U.phone}</td>
+                            <td align='center'>
+                                <button id="edit_button${U.phone}"   onclick="edit_row('${U.phone}')" style ="color: brown"  class="edit btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Edit Record" >             <span class="glyphicon glyphicon-edit" aria-hidden="true">           </span></button>
+                                <button id="save_button${U.phone}"  onclick="save_row('${U.phone}')" style="color: darkseagreen" class="save hidden btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Save Changes"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true">      </span></button>
+                                <button id="delete_button${U.phone}" onclick="delete_row('${U.phone}')" style="color:red"     class="btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Delete Record">                 <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">  </span></button>
+                                <button id="cancel_button${U.phone}" onclick="cancel_chage('${U.phone}')" style="color:blue"    class="hidden btn_control_option_table" data-toggle="tooltip" data-placement="top" title="Cancel Changes">         <span class="glyphicon glyphicon-ban-circle" aria-hidden="true">     </span></button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+         
 
         <script>
             //                for btn action
 
             function controlChanges(no) {
-                $(("#save_button" + no)).toggleClass("hidden");
-                $(("#cancel_button" + no)).toggleClass("hidden");
-                $(("#edit_button" + no)).toggleClass("hidden");
-                $(("#delete_button" + no)).toggleClass("hidden");
+                $("#delete_button" + no + ",#save_button" + no + ",#cancel_button" + no + ",#edit_button" + no).toggleClass("hidden");
             }
 
             var name_data, country_data, age_data;
-
             function edit_row(no) {
 
                 var name = document.getElementById("name_row" + no);
                 var country = document.getElementById("country_row" + no);
                 var age = document.getElementById("age_row" + no);
-
                 name_data = name.innerHTML;
                 country_data = country.innerHTML;
                 age_data = age.innerHTML;
-
                 name.innerHTML = "<input type='text' id='name_text" + no + "' value='" + name_data + "'>";
                 country.innerHTML = "<input type='text' id='country_text" + no + "' value='" + country_data + "'>";
                 age.innerHTML = "<input type='text' id='age_text" + no + "' value='" + age_data + "'>";
@@ -128,12 +77,10 @@
                 var name_val = document.getElementById("name_text" + no).value;
                 var country_val = document.getElementById("country_text" + no).value;
                 var age_val = document.getElementById("age_text" + no).value;
-
                 document.getElementById("name_row" + no).innerHTML = name_val;
                 document.getElementById("country_row" + no).innerHTML = country_val;
                 document.getElementById("age_row" + no).innerHTML = age_val;
                 controlChanges(no);
-
             }
 
             function delete_row(no) {
@@ -146,7 +93,6 @@
                 var new_name = $("#newRecord_name").val();
                 var new_country = $("#newRecord_country").val();
                 var new_age = $("#newRecord_age").val();
-
                 var table = document.getElementById("data_table");
                 var table_len = (table.rows.length) - 1;
                 var row = table.insertRow(table_len).outerHTML = "<tr id='row" + table_len + "'>" +
@@ -159,7 +105,7 @@
                         "<button id='delete_button" + table_len + "' onclick='delete_row(" + table_len + ")' style='color:red' class='btn_control_option_table' data-toggle='tooltip' data-placement='top' title='Delete Record' ><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>" +
                         "<button id='cancel_button" + table_len + "' onclick='cancel_chage(" + table_len + ")' style='color:blue' class='hidden btn_control_option_table' data-toggle='tooltip' data-placement='top' title='Cancel Changes'><span class='glyphicon glyphicon-ban-circle' aria-hidden='true'></span></button>" +
                         "</td></tr>";
-
+                Insert_Ajax();
                 document.getElementById("newRecord_name").value = "";
                 document.getElementById("newRecord_country").value = "";
                 document.getElementById("newRecord_age").value = "";
@@ -170,7 +116,57 @@
                 document.getElementById("country_row" + no).innerHTML = country_data;
                 document.getElementById("age_row" + no).innerHTML = age_data;
                 controlChanges(no);
+            }
+            //-----------------------------------------------------------------------------------------------
 
+
+            function doAdd(urlMapping, paramName, ParamID) {
+
+                var data = {};
+                for (var i = 0; i < paramName.length; i++) {
+                    //Gather Data also remove undefined keys(buttons)
+                    data[paramName[i]] = $("#" + ParamID[i] + "").val();
+                    //                    data["phone"] = $("#newRecord_country").val();
+                    //                    data["email"] = $("#newRecord_age").val();
+                }
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'post',
+                    url: urlMapping,
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    success: function (callback) {
+                        alert("Response: Name: " + callback.name + "  DOB: " + callback.dob + "  Email: " + callback.email + "  Phone: " + callback.phone);
+                        $(this).html("Success!");
+                    },
+                    error: function () {
+                        $(this).html("Error!");
+                    }
+                });
+            }
+
+
+            function Update_Ajax() {}
+
+            function Insert_Ajax() {
+                var paramName = ["name", "phone", "email"];
+                var ParamID = ["newRecord_name", "newRecord_country", "newRecord_age"];
+                doAdd('addmember', paramName, ParamID);
+            }
+
+            function Delete_Ajax() {}
+
+            function Search_Ajax() {}
+
+            function onClickRowSelected(no) {
+                for (var i = 0; i < $('#data_table').length; i + 2) {
+                    $("#data_table tr", i).css('background-color', 'rgba(223, 215, 82, 0.2)');
+                }
+
+                //                $("#data_table tbody tr:visible:odd", this).css();
+
+                $("#row" + no).css("background-color", " rgba(100,255,100,.5)");
             }
         </script>
 
@@ -192,9 +188,6 @@
             #data_table tr:nth-child(even) {
                 background-color: rgba(223, 215, 82, 0.2);
             }
-            #data_table tr:nth-last-of-type {
-                background-color: rgb(225, 255, 55);
-            }
             .search-table{
                 opacity: .2;
                 transition: ease-in-out .5s all;
@@ -209,10 +202,28 @@
                 font-size: 15px;
                 color: turquoise
             }
+            #data_table tr:hover{
+                background-color: rgba(100,255,100,.5);
+                cursor: pointer;
+            }
 
         </style>
 
+        <script>
+            var $table = $('#data_table'),
+                    $bodyCells = $table.find('tbody tr:first').children(),
+                    colWidth;
 
+// Get the tbody columns width array
+            colWidth = $bodyCells.map(function () {
+                return $(this).width();
+            }).get();
+
+// Set the width of thead columns
+            $table.find('thead tr').children().each(function (i, v) {
+                $(v).width(colWidth[i]);
+            });
+        </script>
 
         <script>
             function sortTable(n) {
