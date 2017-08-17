@@ -1,4 +1,4 @@
-package com.ugurcanlacin.simple.model;
+package com.mms.Hibernate.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +25,8 @@ public class User implements java.io.Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public Integer getId() {
         return this.id;
     }
