@@ -1,4 +1,4 @@
-package com.mms.Hibernate.Entity.Session;
+package com.mms.Dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class SessionGate {
+public class SessionDAO {
 
     @Autowired
     private SessionFactory sessionFactory;

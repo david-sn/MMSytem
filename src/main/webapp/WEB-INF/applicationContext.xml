@@ -35,4 +35,6 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
           p:sessionFactory-ref="sessionFactory">
     </bean>
+    
+    <bean id="userServiceSB" class="com.mms.Service.UserServiceImpl"/>
 </beans>

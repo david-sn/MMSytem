@@ -2,18 +2,11 @@ package com.mms.Beans;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
 import com.mms.Hibernate.Entity.User;
 import com.mms.Service.UserServiceImpl;
 
-@ManagedBean
-@SessionScoped
 public class UserBean implements Serializable {
 
-    @ManagedProperty(value = "#{userService}")
     UserServiceImpl userService;
 
     private String name;

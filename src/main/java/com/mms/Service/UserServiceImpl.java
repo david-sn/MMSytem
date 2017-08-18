@@ -1,39 +1,36 @@
 package com.mms.Service;
 
+import com.mms.Dao.SessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.mms.Dao.UserDaoImpl;
 import com.mms.Hibernate.Entity.User;
 
-@Service("userService")
 public class UserServiceImpl {
 
     @Autowired
-    UserDaoImpl userDao;
+    SessionDAO sessionDAO;
 
     @Transactional
     public void persistUser(User user) {
-        userDao.persistUserdd(user);
+        sessionDAO.SaveOrUpdate(user);
 
     }
 
     @Transactional
     public User findUserById(int id) {
 
-        return userDao.findUserById(id);
+        return sessionDAO.fetchById(id, User.class);
     }
 
     @Transactional
     public void updateUser(User user) {
-        userDao.updateUser(user);
+        sessionDAO.update(user);
 
     }
 
     @Transactional
     public void deleteUser(User user) {
-        userDao.deleteUser(user);
+        sessionDAO.delete(user);
 
     }
 
