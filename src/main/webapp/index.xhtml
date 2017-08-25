@@ -16,8 +16,8 @@
 
         
 	<h:form>
-		<h:inputText value="#{userBean.name}" />
-		<h:inputText value="#{userBean.surname}" />
+            <h:inputText value="#{userBean.u.name}" />
+		<h:inputText value="#{userBean.u.surname}" />
 		<h:commandButton value="Submit" action="#{userBean.persistUser()}" />
 	</h:form>
 

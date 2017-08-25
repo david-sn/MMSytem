@@ -12,7 +12,7 @@ public class UserServiceImpl {
 
     @Transactional
     public void persistUser(User user) {
-        sessionDAO.SaveOrUpdate(user);
+        sessionDAO.Save(user);
 
     }
 

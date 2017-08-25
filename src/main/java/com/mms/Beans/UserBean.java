@@ -11,6 +11,15 @@ public class UserBean implements Serializable {
 
     private String name;
     private String surname;
+    private User u = new User();
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
+    }
 
     public void setUserService(UserServiceImpl userService) {
         this.userService = userService;
@@ -33,10 +42,10 @@ public class UserBean implements Serializable {
     }
 
     public void persistUser() {
-        User user = new User();
-        user.setName(getName());
-        user.setSurname(getSurname());
-        userService.persistUser(user);
+//        User user = new User();
+//        user.setName(getName());
+//        user.setSurname(getSurname());
+        userService.persistUser(u);
     }
 
 }
