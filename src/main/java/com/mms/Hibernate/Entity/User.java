@@ -12,10 +12,12 @@ import javax.persistence.Table;
 @Table(name = "user_")
 public class User implements java.io.Serializable {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
     private String name;
     private String surname;
-
+     
     public User() {
     }
 
@@ -24,18 +26,14 @@ public class User implements java.io.Serializable {
         this.surname = surname;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
-    public Integer getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    @Column(name = "name", length = 20)
     public String getName() {
         return this.name;
     }
@@ -44,7 +42,6 @@ public class User implements java.io.Serializable {
         this.name = name;
     }
 
-    @Column(name = "surname", length = 20)
     public String getSurname() {
         return this.surname;
     }

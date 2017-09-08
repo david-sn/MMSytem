@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
         <meta charset="utf-8"/>
@@ -14,12 +15,11 @@
 
         <h:outputText value="Simple Test"></h:outputText>
 
-        
-	<h:form>
+        <h:form>
             <h:inputText value="#{userBean.u.name}" />
-		<h:inputText value="#{userBean.u.surname}" />
-		<h:commandButton value="Submit" action="#{userBean.persistUser()}" />
-	</h:form>
+            <h:inputText value="#{userBean.u.surname}" />
+            <h:commandButton value="Submit" action="#{userBean.persistUser()}" />
+        </h:form>
 
         <a href="View/Pages/MemberDetails/newTemplateClient.xhtml">asd</a>
         <div class="main">

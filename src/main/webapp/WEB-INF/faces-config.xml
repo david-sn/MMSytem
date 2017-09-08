@@ -15,12 +15,25 @@
             <value>#{userServiceSB}</value>
         </managed-property>
     </managed-bean>
-   <!-- JSF and Spring are integrated -->
-   <application>
-     <el-resolver>
-      org.springframework.web.jsf.el.SpringBeanFacesELResolver
-     </el-resolver>
-   </application>
+    
+    <!--member detail bean-->
+    <managed-bean>
+        <managed-bean-name>MDB</managed-bean-name>
+        <managed-bean-class>com.mms.Beans.MemberDetailBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>memberDetailSerivce</property-name>
+            <property-class>com.mms.Service.MemberDetailSerivce</property-class>
+            <value>#{memberDetailServiceSB}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <!-- JSF and Spring are integrated -->
+    <application>
+        <el-resolver>
+            org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+    </application>
 
  
 

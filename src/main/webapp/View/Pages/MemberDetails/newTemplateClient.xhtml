@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <body>
+    <h:body>
 
         <ui:composition template="./../../Templete/Layout.xhtml">
 
@@ -16,32 +16,101 @@
 
             <ui:define name="content">
 
+                <p:dataTable var="member" value="#{MDB.allMember}" 
+                             editable="true" editMode="row"  
+                             scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="100" 
+                             emptyMessage="No Members found with given criteria" widgetVar="carsTable" filteredValue="#{MDB.filterMember}"
+                             style="margin-bottom:20px">
 
-                <p:dataTable virtualScroll="true" value="#{chkview.checkerses}" var="ccc" selectionMode="single"  >
+
                     <f:facet name="header">
-                        Member List Data
+                        <p class="p">Current Member</p>
                     </f:facet>
-                    <!--<p:ajax event="rowSelect"   update=":form:msgs" />-->
+
+
+                    <p:column filterBy="#{member.code}" headerText="Id" filterMatchMode="contains">
+                        <h:outputText value="#{member.code}" />
+                    </p:column>
+
                     <p:column headerText="Code">
-                        <h:outputText value="#{ccc.name}" />
+                        <f:facet name="filter">
+                            <p:inputText value="#{member.code}"  />
+                        </f:facet>
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{member.code}"  />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  value="#{member.code}"  style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    <p:column headerText="Name AR">
-                        <h:outputText value="ds" />
+                    <p:column headerText="First Name" >
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{member.fname}"  />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  value="#{member.fname}"  style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    <p:column headerText="Name En">
-                        <h:outputText value="ds" />
+                    <p:column headerText="Last Name"  >
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{member.lname}"  />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  value="#{member.lname}"  style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    <p:column headerText="Gender">
-                        <h:outputText value="ds" />
+                    <p:column headerText="First Name En" >
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{member.fnameEn}"  />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  value="#{member.fnameEn}"  style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                </p:dataTable>
-
-
-
-
+                    <p:column headerText="Last Name En" >
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{member.lnameEn}"  />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  value="#{member.lnameEn}"  style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Address" >
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{member.address1}"  />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  value="#{member.address1}"  style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column style="width:30px">
+                        <p:rowEditor />
+                    </p:column>
+                    <f:facet name="footer">
+                        In total there are <b>#{MDB.allMember.size()}</b> Members.
+                    </f:facet>
+                </p:dataTable> 
+                
+                <link href="#{request.contextPath}/resources/css/memberDetailPage.css" rel="stylesheet" type="text/css" />
+               
+                
             </ui:define>
-
         </ui:composition>
 
-    </body>
+
+
+    </h:body>
+
 </html>

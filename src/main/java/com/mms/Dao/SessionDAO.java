@@ -23,7 +23,7 @@ public class SessionDAO {
         sessionFactory.getCurrentSession().saveOrUpdate(entity);
         return entity;
     }
-    
+
     public <T> T Save(final T entity) {
         sessionFactory.getCurrentSession().save(entity);
         return entity;

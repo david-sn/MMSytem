@@ -2,10 +2,10 @@ create table ichalet_user(user_Id number PRIMARY KEY,password VARCHAR2(150),emai
 
 
 create TABLE book_store(
-dbid NUMBER CONSTRAINT bo_st_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0) CONSTRAINT bo_st_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER(1,0) DEFAULT '0',
+locked NUMBER (1,0)DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 store_name VARCHAR2(255),
@@ -15,18 +15,19 @@ day_index VARCHAR2(20),
 plicy_rule VARCHAR2(1000),
 phone VARCHAR2(25),
 address VARCHAR2(255),
-member_detail_dbid_responsible NUMBER CONSTRAINT bo_st_me_de_db_re_fk REFERENCES member_detail(dbid),
-user_Account_dbid_responsible NUMBER CONSTRAINT bo_st_us_ac_db_re_fk REFERENCES user_Account(dbid),
+member_detail_dbid_responsible NUMBER(18,0) CONSTRAINT bo_st_me_de_db_re_fk REFERENCES member_detail(dbid),
+user_Account_dbid_responsible NUMBER(18,0) CONSTRAINT bo_st_us_ac_db_re_fk REFERENCES user_Account(dbid),
 max_number_to_borrow NUMBER(3),
 max_days_to_borrow NUMBER(3)
 );
+ 
 
 
 create TABLE submit_task(
-dbid NUMBER CONSTRAINT su_ta_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT su_ta_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 notes VARCHAR2(255),
@@ -35,15 +36,15 @@ attach_file2 BFILE,
 attach_file3 BFILE,
 actual_degree NUMBER,
 member_detail_dbid NUMBER,
-lookup_task_dbid NUMBER CONSTRAINT as_de_ta_lo_ta_db_fk REFERENCES lookup_task(dbid)
+lookup_task_dbid NUMBER(18,0)CONSTRAINT as_de_ta_lo_ta_db_fk REFERENCES lookup_task(dbid)
 );
 
 
 create table lookup_task(
-dbid NUMBER CONSTRAINT lo_ta_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ta_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 task_title VARCHAR2(255),
@@ -53,7 +54,7 @@ attach_file BFILE,
 attach_file2 BFILE,
 attach_file3 BFILE,
 description CLOB,
-lookup_task_type_dbid NUMBER CONSTRAINT lo_ta_lo_ta_ty_db_fk REFERENCES lookup_task_type(dbid),
+lookup_task_type_dbid NUMBER(18,0)CONSTRAINT lo_ta_lo_ta_ty_db_fk REFERENCES lookup_task_type(dbid),
 lookup_department_dbid_assign NUMBER,
 min_degree NUMBER(4),
 max_degree NUMBER(4),
@@ -62,10 +63,10 @@ top_delivered_full_mark NUMBER
 
 
 create table lookup_task_type(
-dbid NUMBER CONSTRAINT lo_ta_ty_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ta_ty_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 task_title VARCHAR2(255),
@@ -74,25 +75,25 @@ task_title_en VARCHAR2(255)
 
 
 create TABLE follow_up_sheet_Detail(
-dbid NUMBER CONSTRAINT fo_up_sh_de_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT fo_up_sh_de_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
-follow_up_sheet_dbid NUMBER CONSTRAINT fo_up_sh_de_fo_up_sh_db_fk REFERENCES follow_up_sheet(dbid),
-follow_up_dbid NUMBER CONSTRAINT fo_up_sh_de_fo_up_db_fk REFERENCES follow_up(dbid),
+follow_up_sheet_dbid NUMBER(18,0)CONSTRAINT fo_up_sh_de_fo_up_sh_db_fk REFERENCES follow_up_sheet(dbid),
+follow_up_dbid NUMBER(18,0)CONSTRAINT fo_up_sh_de_fo_up_db_fk REFERENCES follow_up(dbid),
 notes CLOB,
 target_success CHAR DEFAULT '0',
-lookup_sheet_status_dbid NUMBER CONSTRAINT fo_up_sh_de_lo_sh_st_db_fk REFERENCES lookup_sheet_status(dbid)
+lookup_sheet_status_dbid NUMBER(18,0)CONSTRAINT fo_up_sh_de_lo_sh_st_db_fk REFERENCES lookup_sheet_status(dbid)
 );
 
 
 create TABLE lookup_sheet_status(
-dbid NUMBER CONSTRAINT lo_sh_st_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_sh_st_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 sheet_status_name VARCHAR2(255),
@@ -101,53 +102,53 @@ sheet_status_name_en VARCHAR2(255)
 
 
 create TABLE follow_up_sheet(
-dbid NUMBER CONSTRAINT fo_up_sh_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT fo_up_sh_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 sheet_from_date DATE,
 sheet_to_date DATE,
 sheet_title VARCHAR2(255),
 sheet_title_en VARCHAR2(255),
-assigned_to_member_detail_dbid NUMBER CONSTRAINT fo_up_sh_as_to_me_de_db_fk REFERENCES member_detail(dbid)
+assigned_to_member_detail_dbid NUMBER(18,0)CONSTRAINT fo_up_sh_as_to_me_de_db_fk REFERENCES member_detail(dbid)
 );
 
 
 create table follow_up(
-dbid NUMBER CONSTRAINT fo_up_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT fo_up_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
-member_detail_dbid_subervise NUMBER CONSTRAINT fo_up_me_de_db_su_fk REFERENCES member_detail(dbid) CONSTRAINT fo_up_me_de_db_su_un UNIQUE,
-member_detail_dbid_child NUMBER CONSTRAINT fo_up_me_de_db_ch_fk REFERENCES member_detail(dbid) CONSTRAINT fo_up_me_de_db_ch_un UNIQUE
+member_detail_dbid_subervise NUMBER(18,0)CONSTRAINT fo_up_me_de_db_su_fk REFERENCES member_detail(dbid) CONSTRAINT fo_up_me_de_db_su_un UNIQUE,
+member_detail_dbid_child NUMBER(18,0)CONSTRAINT fo_up_me_de_db_ch_fk REFERENCES member_detail(dbid) CONSTRAINT fo_up_me_de_db_ch_un UNIQUE
 );
 
 
 CREATE TABLE lookup_message_templete(
-dbid NUMBER CONSTRAINT lo_me_te_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_me_te_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 message_title VARCHAR2(255),
 message_title_en VARCHAR2(255),
 message_body VARCHAR2(500) DEFAULT'' CONSTRAINT lo_me_te_me_bo_nn NOT NULL,
 message_body_en VARCHAR2(500)DEFAULT'' CONSTRAINT lo_me_te_me_boe_nn NOT NULL,
-lookup_category_message_dbid NUMBER CONSTRAINT lo_me_te_lo_ca_db REFERENCES lookup_message_category(dbid),
-lookup_category_message_dbid_d NUMBER CONSTRAINT lo_me_te_lo_ca_me_db_de REFERENCES lookup_message_category(dbid)
+lookup_category_message_dbid NUMBER(18,0)CONSTRAINT lo_me_te_lo_ca_db REFERENCES lookup_message_category(dbid),
+lookup_category_message_dbid_d NUMBER(18,0)CONSTRAINT lo_me_te_lo_ca_me_db_de REFERENCES lookup_message_category(dbid)
 );
 
 
 create TABLE lookup_message_category(
-dbid NUMBER CONSTRAINT lo_me_ca_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_me_ca_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 category_name VARCHAR2(255),
@@ -158,10 +159,10 @@ last_send_date DATE
 
 
 create TABLE lookup_user_type(
-dbid NUMBER CONSTRAINT lo_us_ty_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_us_ty_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 user_type_name VARCHAR2(255),
@@ -170,10 +171,10 @@ user_type_name_en VARCHAR2(255)
 
 
 create TABLE user_Account(
-dbid NUMBER CONSTRAINT us_ac_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT us_ac_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 first_name VARCHAR2(255),
@@ -183,14 +184,14 @@ password VARCHAR2(255),
 img BFILE,
 phone VARCHAR2(50),
 address VARCHAR2(255),
-lookup_user_type_dbid NUMBER CONSTRAINT us_ac_lo_us_ty_fk REFERENCES lookup_user_type(dbid),
-member_detail_dbid NUMBER CONSTRAINT us_ac_me_de_db_fk REFERENCES member_detail(dbid),
-allow_user_creation CHAR(1),
+lookup_user_type_dbid NUMBER(18,0)CONSTRAINT us_ac_lo_us_ty_fk REFERENCES lookup_user_type(dbid),
+member_detail_dbid NUMBER(18,0)CONSTRAINT us_ac_me_de_db_fk REFERENCES member_detail(dbid),
+allow_user_creation  NUMBER (1,0) ,
 last_login_date DATE,
 mac_address_login VARCHAR2(20),
 ip_address VARCHAR2(100),
 access_token VARCHAR2(255),
-password_expire_duration_days NUMBER DEFAULT 100,
+password_expire_duration_days NUMBER(18,0)DEFAULT 100,
 expire_date DATE,
 login_start_time TIMESTAMP DEFAULT to_timestamp('12:00 am','hh:mi am'),
 login_end_time TIMESTAMP DEFAULT to_timestamp('12:00 pm','hh:mi pm')
@@ -198,10 +199,10 @@ login_end_time TIMESTAMP DEFAULT to_timestamp('12:00 pm','hh:mi pm')
 
 
 create TABLE lookup_role(
-dbid NUMBER CONSTRAINT lo_ro_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ro_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 role_name VARCHAR2(255)
@@ -209,16 +210,16 @@ role_name VARCHAR2(255)
 
 
 create TABLE user_Role(
-lookup_role_dbid NUMBER CONSTRAINT us_ro_lo_ro_db_fk REFERENCES lookup_role(dbid),
-user_Account_dbid NUMBER CONSTRAINT us_ro_us_ac_db_fk REFERENCES user_Account(dbid)
+lookup_role_dbid NUMBER(18,0)CONSTRAINT us_ro_lo_ro_db_fk REFERENCES lookup_role(dbid),
+user_Account_dbid NUMBER(18,0)CONSTRAINT us_ro_us_ac_db_fk REFERENCES user_Account(dbid)
 );
 
 
 CREATE TABLE attendance_segment(
-dbid NUMBER CONSTRAINT at_se_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT at_se_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 CHECK_in_date DATE,
 member_detail_dbid NUMBER,
 time_segment_rules_dbid NUMBER,
@@ -228,13 +229,13 @@ created_date DATE DEFAULT sysdate
 
 
 create TABLE time_segment_rules(
-dbid NUMBER CONSTRAINT ti_se_ru_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT ti_se_ru_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
 segment_name NVARCHAR2(255) DEFAULT '' CONSTRAINT ti_se_ru_se_na_nn NOT NULL CONSTRAINT ti_se_ru_se_na_un UNIQUE,
 segment_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT ti_se_ru_se_nae_nn NOT NULL CONSTRAINT ti_se_ru_se_nae_un UNIQUE,
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
-lookup_meeting_dbid NUMBER CONSTRAINT ti_se_lo_me_db REFERENCES lookup_meeting(dbid),
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
+lookup_meeting_dbid NUMBER(18,0)CONSTRAINT ti_se_lo_me_db REFERENCES lookup_meeting(dbid),
 start_workin_date DATE DEFAULT sysdate,
 end_working_date DATE,
 start_day_index number(1),
@@ -242,17 +243,17 @@ early_come_min NUMBER,
 actual_start_time TIMESTAMP,
 late_come NUMBER,
 actual_finish_time TIMESTAMP,
-is_current CHAR(1),
+is_current  NUMBER (1,0) ,
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate
 );
 
 
 create table event(
-dbid NUMBER CONSTRAINT ev_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT ev_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate,
 from_date TIMESTAMP,
@@ -261,7 +262,7 @@ event_title VARCHAR2(255),
 event_title_en VARCHAR2(255),
 event_description CLOB,
 event_description_en CLOB,
-lookup_event_type NUMBER CONSTRAINT ev_lo_ev_ty REFERENCES lookup_event_type(dbid),
+lookup_event_type NUMBER(18,0)CONSTRAINT ev_lo_ev_ty REFERENCES lookup_event_type(dbid),
 warninig_text varchar2(255),
 cover_img BFILE,
 img1 BLOB,
@@ -274,15 +275,15 @@ responsible1_dbid NUMBER,
 responsible2_dbid NUMBER,
 responsible_name VARCHAR2(255),
 responsible_mobile VARCHAR2(25),
-private_invitation CHAR(1)
+private_invitation  NUMBER (1,0) 
 );
 
 
 create table lookup_event_type(
-dbid NUMBER CONSTRAINT lo_ev_ty_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ev_ty_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 type_name VARCHAR2(255) DEFAULT '' CONSTRAINT lo_ev_ty_ty_na_nn NOT NULL,
 type_name_en VARCHAR2(255) DEFAULT '' CONSTRAINT lo_ev_ty_ty_nae_nn NOT NULL,
@@ -292,12 +293,12 @@ description_en VARCHAR2(500)
 
 
 create TABLE lookup_hall(
-dbid NUMBER CONSTRAINT lo_ha_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ha_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
 hall_name NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_ha_ha_na_nn NOT NULL CONSTRAINT llo_ha_ha_na_un UNIQUE,
 hall_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_ha_ha_nae_nn NOT NULL CONSTRAINT lo_ha_ha_nae_un UNIQUE,
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 location_detail VARCHAR2(255),
 location_detail_en VARCHAR2(255),
@@ -320,12 +321,12 @@ responsible2_img VARCHAR2(50)
 
 
 create table lookup_meeting(
-dbid NUMBER CONSTRAINT lo_me_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_me_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
 meeting_name NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_me_me_na_nn NOT NULL CONSTRAINT lo_me_me_na_un UNIQUE,
 meeting_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_me_me_nae_nn NOT NULL CONSTRAINT lo_me_me_nae_un UNIQUE,
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 description CLOB,
 meeting_manager number,
 father_manager1 NUMBER,
@@ -339,28 +340,28 @@ expected_no_attend_in_winter NUMBER,
 facebook_account VARCHAR2(255),
 meeting_mobile1 VARCHAR2(255),
 meeting_mobile2 VARCHAR2(255),
-lookup_hall_dbid_fixed NUMBER CONSTRAINT lo_me_lo_ha_db_fi_re REFERENCES lookup_hall(dbid),
-place_fixed CHAR(1),
+lookup_hall_dbid_fixed NUMBER(18,0)CONSTRAINT lo_me_lo_ha_db_fi_re REFERENCES lookup_hall(dbid),
+place_fixed  NUMBER (1,0) ,
 ignore_attendace_after_no_late NUMBER
 );
 
 
 CREATE TABLE department_position(
-dbid NUMBER CONSTRAINT de_po_db_pk PRIMARY KEY ,
-lookup_department NUMBER CONSTRAINT de_po_lo_de_fk REFERENCES lookup_department(dbid),
+dbid NUMBER(18,0)CONSTRAINT de_po_db_pk PRIMARY KEY ,
+lookup_department NUMBER(18,0)CONSTRAINT de_po_lo_de_fk REFERENCES lookup_department(dbid),
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 start_date DATE DEFAULT sysdate,
 expire_date DATE,
 start_join_date DATE DEFAULT sysdate,
 normal_capacity_participation number,
 max_capacity_participation number,
-direct_manager NUMBER CONSTRAINT de_po_di_ma_nu NOT NULL,
+direct_manager NUMBER(18,0)CONSTRAINT de_po_di_ma_nu NOT NULL,
 last_updated date DEFAULT sysdate,
 team_leader number,
 description CLOB,
-need_confirmation_to_join CHAR(1),
+need_confirmation_to_join  NUMBER (1,0) ,
 file_attache1 VARCHAR2(255),
 file_attache2 VARCHAR2(255),
 min_experienec NUMBER
@@ -368,98 +369,98 @@ min_experienec NUMBER
 
 
 create table lookup_department(
-dbid NUMBER CONSTRAINT lo_de_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_de_db_pk PRIMARY KEY ,
 code VARCHAR2(50),
 department_name NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_de_de_na_nn NOT NULL CONSTRAINT lo_de_de_na_un UNIQUE,
 department_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_de_de_nae_nn NOT NULL CONSTRAINT lo_de_de_nae_un UNIQUE,
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
-root CHAR(1),
-parent_department NUMBER CONSTRAINT lo_de_pa_de_fk REFERENCES lookup_department(dbid),
+root  NUMBER (1,0) ,
+parent_department NUMBER(18,0)CONSTRAINT lo_de_pa_de_fk REFERENCES lookup_department(dbid),
 at_level NUMBER(5),
-direct_manager NUMBER CONSTRAINT lo_de_de_ma_no_nu NOT NULL,
+direct_manager NUMBER(18,0)CONSTRAINT lo_de_de_ma_no_nu NOT NULL,
 start_date DATE DEFAULT sysdate,
 expire_date DATE,
 start_join_position_date DATE DEFAULT sysdate,
-private_department CHAR(1) DEFAULT '0'
+private_department NUMBER (1,0) DEFAULT '0'
 );
 
 
 create table lookup_church(
-dbid NUMBER CONSTRAINT lo_ch_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ch_db_pk PRIMARY KEY ,
 church_name NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_ch_ch_na_nn NOT NULL CONSTRAINT lo_ch_ch_na_un UNIQUE,
 church_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_ch_ch_nae_nn NOT NULL CONSTRAINT lo_ch_che_un UNIQUE,
 lng DECIMAL,
 lat DECIMAL,
-lookup_city_dbid NUMBER CONSTRAINT lo_ch_lo_ci_db_fk REFERENCES lookup_country(dbid),
+lookup_city_dbid NUMBER(18,0)CONSTRAINT lo_ch_lo_ci_db_fk REFERENCES lookup_country(dbid),
  code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate
 );
 
 
 create table lookup_father(
-dbid NUMBER CONSTRAINT lo_fa_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_fa_db_pk PRIMARY KEY ,
 father_name NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_fa_fa_na_nn NOT NULL CONSTRAINT lo_fa_fa_na_un UNIQUE,
 father_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_fa_fa_nae_nn NOT NULL CONSTRAINT lo_fa_fa_nae_un UNIQUE,
 father_phone VARCHAR2(50) CONSTRAINT lo_fa_fa_ph_un UNIQUE,
-lookup_church_dbid NUMBER CONSTRAINT lo_fa_lo_ch_db_fk REFERENCES lookup_church(dbid),
+lookup_church_dbid NUMBER(18,0)CONSTRAINT lo_fa_lo_ch_db_fk REFERENCES lookup_church(dbid),
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate
 );
 
 
 create table lookup_meeting_type(
-dbid NUMBER CONSTRAINT lo_me_ty_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_me_ty_db_pk PRIMARY KEY ,
 type_name NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_me_ty_ty_na_nn NOT NULL CONSTRAINT lo_me_ty_ty_na_un UNIQUE,
 type_name_en NVARCHAR2(255) DEFAULT '' CONSTRAINT lo_me_ty_nae_nn NOT NULL CONSTRAINT lo_me_ty_nae_un UNIQUE,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate
 );
 
 
 create table lookup_city(
-dbid NUMBER CONSTRAINT lo_ci_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_ci_db_pk PRIMARY KEY ,
 city_name VARCHAR2(255) DEFAULT '' CONSTRAINT lo_ci_cn_nn NOT NULL CONSTRAINT lo_ci_cn_un UNIQUE,
 city_name_en VARCHAR2(255)DEFAULT '' CONSTRAINT lo_ci_cne_nn NOT NULL CONSTRAINT lo_ci_cne_un UNIQUE,
 shortcut VARCHAR2(20)CONSTRAINT lo_ci_sh_un UNIQUE,
-lookup_country_dbid NUMBER  CONSTRAINT lo_ci_db_nn NOT NULL  CONSTRAINT lo_co_cn_fk REFERENCES lookup_country(dbid),
+lookup_country_dbid NUMBER(18,0) CONSTRAINT lo_ci_db_nn NOT NULL  CONSTRAINT lo_co_cn_fk REFERENCES lookup_country(dbid),
 lng DECIMAL,
 lat DECIMAL, 
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate 
 );
 
 
 create table lookup_country(
-dbid NUMBER CONSTRAINT lo_co_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT lo_co_db_pk PRIMARY KEY ,
 country_name VARCHAR2(255) DEFAULT '' CONSTRAINT lo_co_cn_nn NOT NULL CONSTRAINT lo_co_cn_un UNIQUE,
 country_name_en VARCHAR2(255)DEFAULT '' CONSTRAINT lo_co_cne_nn NOT NULL CONSTRAINT lo_co_cne_un UNIQUE,
 shortcut VARCHAR2(20)CONSTRAINT lo_co_sh_un UNIQUE,
 lng DECIMAL,
 lat DECIMAL,
 code VARCHAR2(50),
-deleted CHAR(1) DEFAULT '0',
-locked  CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
+locked  NUMBER (1,0) DEFAULT '0',
 last_updated date DEFAULT sysdate,
 created_date DATE DEFAULT sysdate
 );
 
 
 create table member_detail(
-dbid NUMBER CONSTRAINT me_de_db_pk PRIMARY KEY ,
+dbid NUMBER(18,0)CONSTRAINT me_de_db_pk PRIMARY KEY ,
 code NVARCHAR2(255),
 fname NVARCHAR2(255) DEFAULT '' CONSTRAINT me_de_fn_nn NOT NULL  ,
 lname NVARCHAR2(255) DEFAULT '' CONSTRAINT me_de_ln_nn NOT NULL,
@@ -474,20 +475,22 @@ address2 NVARCHAR2(255) ,
 birthday DATE ,
 photo1 BFILE,
 photo2 BFILE,
-deleted CHAR(1) DEFAULT '0',
+deleted NUMBER (1,0) DEFAULT '0',
 create_date DATE DEFAULT sysdate,
-locked CHAR(1) DEFAULT '0',
+locked NUMBER (1,0) DEFAULT '0',
 last_modified_date DATE ,
 expire_date DATE,
 notes CLOB,
-gender CHAR(1) DEFAULT '1',
-working_on_time CHAR(1) DEFAULT '0',
-live_local CHAR(1) DEFAULT '1',
-inivited_by_member NUMBER CONSTRAINT me_de_in_me_fk  REFERENCES member_detail(dbid),
-close_from_member1 NUMBER CONSTRAINT me_de_cl_me1_fk  REFERENCES member_detail(dbid),
-close_from_member2 NUMBER CONSTRAINT me_de_cl_me2_fk  REFERENCES member_detail(dbid),
-helpful CHAR(1) DEFAULT '0',
-join_in_department CHAR(1) DEFAULT '0',
-supervised CHAR(1),
+gender NUMBER (1,0) DEFAULT '1',
+working_on_time NUMBER (1,0) DEFAULT '0',
+live_local NUMBER (1,0) DEFAULT '1',
+inivited_by_member NUMBER(18,0)CONSTRAINT me_de_in_me_fk  REFERENCES member_detail(dbid),
+close_from_member1 NUMBER(18,0)CONSTRAINT me_de_cl_me1_fk  REFERENCES member_detail(dbid),
+close_from_member2 
+CONSTRAINT me_de_cl_me2_fk  REFERENCES member_detail(dbid),
+helpful NUMBER (1,0) DEFAULT '0',
+join_in_department NUMBER (1,0) DEFAULT '0',
+supervised  NUMBER (1,0) ,
 lookup_meeting_dbid number CONSTRAINT me_de_lo_me_db_fk  REFERENCES lookup_meeting(dbid)
 );
+ 26
