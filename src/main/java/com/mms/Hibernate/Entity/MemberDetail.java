@@ -85,6 +85,9 @@ public class MemberDetail implements Serializable {
     @Column(name = "JOIN_IN_DEPARTMENT")
     private Short joinInDepartment;
     private Short supervised;
+    private String mname;
+    @Column(name = "MNAME_EN")
+    private String mnameEn;
     @JoinColumn(name = "LOOKUP_MEETING_DBID", referencedColumnName = "DBID")
     @ManyToOne(fetch = FetchType.LAZY)
     private LookupMeeting lookupMeetingDbid;
@@ -442,6 +445,22 @@ public class MemberDetail implements Serializable {
         this.bookStoreSet = bookStoreSet;
     }
 
+    public String getMname() {
+        return mname;
+    }
+
+    public void setMname(String mname) {
+        this.mname = mname;
+    }
+
+    public String getMnameEn() {
+        return mnameEn;
+    }
+
+    public void setMnameEn(String mnameEn) {
+        this.mnameEn = mnameEn;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -466,5 +485,5 @@ public class MemberDetail implements Serializable {
     public String toString() {
         return "com.mms.Hibernate.Entity.MemberDetail[ dbid=" + dbid + " ]";
     }
-    
+
 }

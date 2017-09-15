@@ -28,6 +28,19 @@
         </managed-property>
     </managed-bean>
     
+    <!--Lookup Bean-->
+    <managed-bean>
+        <managed-bean-name>Lookup</managed-bean-name>
+        <managed-bean-class>com.mms.Beans.LookupBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+        <managed-property>
+            <property-name>lookupService</property-name>
+            <property-class>com.mms.Service.LookupService</property-class>
+            <value>#{lookupSB}</value>
+        </managed-property>
+    </managed-bean>
+    
+    
     <!-- JSF and Spring are integrated -->
     <application>
         <el-resolver>

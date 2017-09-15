@@ -39,4 +39,5 @@
     <!--spring beans to register Service layer-->
     <bean id="userServiceSB" class="com.mms.Service.UserServiceImpl"/>
     <bean id="memberDetailServiceSB" class="com.mms.Service.MemberDetailSerivce"/>
+    <bean id="lookupSB" class="com.mms.Service.LookupService"/>
 </beans>

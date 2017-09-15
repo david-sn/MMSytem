@@ -15,101 +15,180 @@
             </ui:define>
 
             <ui:define name="content">
-
-                <p:dataTable var="member" value="#{MDB.allMember}" 
-                             editable="true" editMode="row"  
-                             scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="100" 
-                             emptyMessage="No Members found with given criteria" widgetVar="carsTable" filteredValue="#{MDB.filterMember}"
-                             style="margin-bottom:20px">
-
-
-                    <f:facet name="header">
-                        <p class="p">Current Member</p>
-                    </f:facet>
-
-
-                    <p:column filterBy="#{member.code}" headerText="Id" filterMatchMode="contains">
-                        <h:outputText value="#{member.code}" />
-                    </p:column>
-
-                    <p:column headerText="Code">
-                        <f:facet name="filter">
-                            <p:inputText value="#{member.code}"  />
-                        </f:facet>
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{member.code}"  />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText  value="#{member.code}"  style="width:100%"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="First Name" >
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{member.fname}"  />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText  value="#{member.fname}"  style="width:100%"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="Last Name"  >
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{member.lname}"  />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText  value="#{member.lname}"  style="width:100%"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="First Name En" >
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{member.fnameEn}"  />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText  value="#{member.fnameEn}"  style="width:100%"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="Last Name En" >
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{member.lnameEn}"  />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText  value="#{member.lnameEn}"  style="width:100%"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="Address" >
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{member.address1}"  />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText  value="#{member.address1}"  style="width:100%"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column style="width:30px">
-                        <p:rowEditor />
-                    </p:column>
-                    <f:facet name="footer">
-                        In total there are <b>#{MDB.allMember.size()}</b> Members.
-                    </f:facet>
-                </p:dataTable> 
-                
                 <link href="#{request.contextPath}/resources/css/memberDetailPage.css" rel="stylesheet" type="text/css" />
-               
-                
+                <script type="text/javascript" src="#{request.contextPath}/resources/js/MemberDetail.js"></script>
+
+                <h:form id="form">
+                    <p:dataTable var="member" value="#{MDB.allMember}" 
+                                 editable="true" editMode="row"  
+                                 scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="100" 
+                                 emptyMessage="No Members found with given search criteria" widgetVar="memberTable" filteredValue="#{MDB.filterMember}" 
+                                 sortMode="multiple" 
+                                 selectionMode="single" selection="#{MDB.selectedMember}" rowKey="#{member.dbid}"
+                                 style="margin-bottom:20px">
+
+
+                        <f:facet name="header">
+                            <p class="p">Current Member</p>
+                        </f:facet>
+
+                        <p:column headerText="Code" filterMatchMode="contains" filterBy="#{member.code}" sortBy="#{member.code}">
+                            <f:facet name="filter">
+                                <p:inputText onchange="PF('memberTable').filter()" placeholder="Text Contains ..." style="width: 100%"/>
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{member.code}"  style="width:100%"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText  value="#{member.code}"  style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="First Name" filterMatchMode="contains" filterBy="#{member.fname}" sortBy="#{member.fname}">
+                            <f:facet name="filter">
+                                <p:inputText onchange="PF('memberTable').filter()" placeholder="Text Contains ..." style="width: 100%"/>
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{member.fname}"  />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText  value="#{member.fname}"  style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Last Name" filterMatchMode="contains" filterBy="#{member.lname}" sortBy="#{member.lname}">
+                            <f:facet name="filter">
+                                <p:inputText onchange="PF('memberTable').filter()" placeholder="Text Contains ..." style="width: 100%"/>
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{member.lname}"  />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText  value="#{member.lname}"  style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="First Name En" filterMatchMode="contains" filterBy="#{member.fnameEn}" sortBy="#{member.fnameEn}">
+                            <f:facet name="filter">
+                                <p:inputText onchange="PF('memberTable').filter()" placeholder="Text Contains ..." style="width: 100%"/>
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{member.fnameEn}"  />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText  value="#{member.fnameEn}"  style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Last Name En" filterMatchMode="contains" filterBy="#{member.lnameEn}" sortBy="#{member.lnameEn}">
+                            <f:facet name="filter">
+                                <p:inputText onchange="PF('memberTable').filter()" placeholder="Text Contains ..." style="width: 100%"/>
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{member.lnameEn}"  />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText  value="#{member.lnameEn}"  style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Address" filterMatchMode="contains" filterBy="#{member.address1}" sortBy="#{member.address1}">
+                            <f:facet name="filter">
+                                <p:inputText onchange="PF('memberTable').filter()" placeholder="Text Contains ..." style="width: 100%"/>
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{member.address1}"  />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText  value="#{member.address1}"  style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column style="width:30px">
+                            <p:rowEditor />
+                        </p:column>
+                        <f:facet name="footer">
+                            In total there are <b>#{MDB.allMember.size()}</b> Members.
+                        </f:facet>
+                        <p:ajax event="rowSelect"   update=":form2" />
+                    </p:dataTable> 
+                </h:form>
+
+                <h:form id="form2">
+                    <p:accordionPanel activeIndex="0" >
+                        <p:tab title="Basic Information">
+                            <h:panelGrid columns="6" cellpadding="10">
+                                <!--Names-->
+                                <h:outputText value="First Name" />
+                                <p:inputText value="#{MDB.selectedMember.fname}"  />
+
+                                <h:outputText value="Middle Name" />
+                                <p:inputText value="#{MDB.selectedMember.mname}"   />
+
+                                <h:outputText value="Last Name" />
+                                <p:inputText value="#{MDB.selectedMember.lname}"   />
+
+                                <!--English Name-->
+                                <h:outputText value="First Name En" />
+                                <p:inputText value="#{MDB.selectedMember.fnameEn}"  />
+
+                                <h:outputText value="Middle Name En" />
+                                <p:inputText value="#{MDB.selectedMember.mnameEn}"   /> 
+
+                                <h:outputText value="Last Name En"  />
+                                <p:inputText value="#{MDB.selectedMember.lnameEn}"   />
+
+
+                                <!--Phone , locked -->
+                                <h:outputText value="Mobile#1"  />
+                                <p:inputMask  value="#{MDB.selectedMember.mobile1}"  mask="(999) 999-9999"/>
+
+                                <h:outputText value="Phone#1"  />
+                                <p:inputMask  value="#{MDB.selectedMember.phone1}" mask="(999) 999-9999"/>
+
+                                <h:outputText value="Locked"  />
+                                <p:selectBooleanCheckbox  value="#{MDB.selectedMember.locked==1?true:false}"   />
+
+                                <h:outputText value="Mobile#2"  />
+                                <p:inputMask  value="#{MDB.selectedMember.mobile2}" mask="(999) 999-9999"/>
+
+                                <h:outputText value="Phone#2"  />
+                                <p:inputMask value="#{MDB.selectedMember.phone2}" mask="(999) 999-9999"/>
+
+                                <h:outputText value="Code"  />
+                                <p:inputText value="#{MDB.selectedMember.code}"    />
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part II">
+                            <h:panelGrid columns="6" cellpadding="10">
+                                <h:outputText value="Address#1" />
+                                <p:inputText value="#{MDB.selectedMember.address1}"  />
+
+                                <h:outputText value="Countery" />
+                                <p:inputText value="#{MDB.selectedMember.address1}"  />
+
+                                <h:outputText value="City" />
+                                <p:inputText value="#{MDB.selectedMember.address1}"  />
+
+                                <p:selectOneMenu value="#{MDB.selectedMember.address1}">
+                                    <f:selectItem itemValue="Cream Latte" itemLabel="Coffee1 - Cream Latte" />
+                                    <f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
+                                    <f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
+                                </p:selectOneMenu>
+
+                            </h:panelGrid>
+                        </p:tab>
+
+                    </p:accordionPanel>
+                </h:form> 
             </ui:define>
         </ui:composition>
-
-
 
     </h:body>
 

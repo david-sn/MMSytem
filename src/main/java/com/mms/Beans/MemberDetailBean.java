@@ -8,7 +8,6 @@ package com.mms.Beans;
 import com.mms.Hibernate.Entity.MemberDetail;
 import com.mms.Service.MemberDetailSerivce;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 
@@ -44,20 +43,20 @@ public class MemberDetailBean implements Serializable {
         this.allMember = allMember;
     }
 
-    public MemberDetail getSelectedMember() {
-        return selectedMember;
-    }
-
-    public void setSelectedMember(MemberDetail selectedMember) {
-        this.selectedMember = selectedMember;
-    }
-
     public List<MemberDetail> getFilterMember() {
         return filterMember;
     }
 
     public void setFilterMember(List<MemberDetail> filterMember) {
         this.filterMember = filterMember;
+    }
+
+    public MemberDetail getSelectedMember() {
+        return selectedMember;
+    }
+
+    public void setSelectedMember(MemberDetail selectedMember) {
+        this.selectedMember = selectedMember;
     }
 
 }
